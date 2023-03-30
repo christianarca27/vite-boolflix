@@ -9,19 +9,13 @@ export default {
             store,
         }
     },
-
-    methods: {
-        search() {
-            console.log(this.store.searchText);
-        },
-    },
 }
 </script>
 
 <template>
     <div id="search">
-        <input @keyup.enter="search()" v-model="store.searchText" type="text" placeholder="Inserisci testo...">
-        <button @click="search()">Cerca</button>
+        <input @keyup.enter="$emit('search')" v-model="store.searchText" type="text" placeholder="Inserisci testo...">
+        <button @click="$emit('search')">Cerca</button>
     </div>
 </template>
 
