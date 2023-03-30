@@ -21,7 +21,7 @@ export default {
   },
 
   methods: {
-    search() {
+    performSearch() {
       this.store.isLoading = true;
       this.store.movies = [];
       let firstQuery = this.store.queryBasicUrl + "search/movie" + this.store.APIkey + this.store.queryLang + "&query=" + this.store.searchText;
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search="search()"></AppHeader>
+  <AppHeader @performSearch="performSearch()"></AppHeader>
 
   <AppMain></AppMain>
 </template>
