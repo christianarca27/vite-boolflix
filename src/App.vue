@@ -10,8 +10,6 @@ export default {
   data() {
     return {
       store,
-
-      totalResultPages: 0,
     };
   },
 
@@ -24,33 +22,42 @@ export default {
     performSearch() {
       this.store.isLoading = true;
       this.store.movies = [];
-      let firstQuery = this.store.queryBasicUrl + "search/movie" + this.store.APIkey + this.store.queryLang + "&query=" + this.store.searchText;
+      let completedQuery = this.store.queryBasicUrl + this.store.querySearchType + this.store.APIkey + this.store.queryLang + "&query=" + encodeURIComponent(this.store.searchText) + "&page=" + this.store.actualPage;
 
-      axios.get(firstQuery)
+      axios.get(completedQuery)
         .then((res) => {
-          this.totalResultPages = res.data.total_pages;
-
-          for (let i = 1; i <= this.totalResultPages; i++) {
-            let singlePageQuery = firstQuery + "&page=" + i;
-
-            axios.get(singlePageQuery)
-              .then((res) => {
-                this.store.movies.push(...res.data.results);
-                if (i == this.totalResultPages) {
-                  this.store.isLoading = false;
-                }
-              });
-          }
+          this.store.totalResultPages = res.data.total_pages;
+          this.store.movies = res.data.results;
+          this.store.isLoading = false;
         });
+    },
+
+    performFirstSearch() {
+      this.store.actualPage = 1;
+      this.performSearch();
+    },
+
+    prevPageSearch() {
+      if (this.store.actualPage > 1) {
+        this.store.actualPage--;
+        this.performSearch();
+      }
+    },
+
+    nextPageSearch() {
+      if (this.store.actualPage < this.store.totalResultPages) {
+        this.store.actualPage++;
+        this.performSearch();
+      }
     },
   },
 }
 </script>
 
 <template>
-  <AppHeader @performSearch="performSearch()"></AppHeader>
+  <AppHeader @perform-search="performFirstSearch()"></AppHeader>
 
-  <AppMain></AppMain>
+  <AppMain @prev-page-search="prevPageSearch()" @next-page-search="nextPageSearch()"></AppMain>
 </template>
 
 <style lang="scss" scoped></style>
