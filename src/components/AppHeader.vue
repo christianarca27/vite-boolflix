@@ -9,14 +9,18 @@ export default {
             store,
         }
     },
+
+    emits: [
+        "perform-search",
+    ],
 }
 </script>
 
 <template>
     <div id="search">
-        <input @keyup.enter="$emit('performSearch')" v-model="store.searchText" type="text"
+        <input @keyup.enter="$emit('perform-search')" v-model="store.searchText" type="text"
             placeholder="Inserisci testo...">
-        <button @click="$emit('performSearch')">Cerca</button>
+        <button @click="$emit('perform-search')">Cerca</button>
     </div>
 </template>
 
