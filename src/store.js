@@ -5,11 +5,19 @@ export const store = reactive({
 
     movies: [],
 
+    totalMoviesPages: 0,
+
+    actualMoviesPage: 0,
+
+    isMoviesReady: true,
+
     series: [],
 
-    totalResultPages: 0,
+    totalSeriesPages: 0,
 
-    actualPage: 0,
+    actualSeriesPage: 0,
+
+    isSeriesReady: true,
 
     typeOfSearch: "both",
 
@@ -20,6 +28,4 @@ export const store = reactive({
     APIkey: "?api_key=c0ba2ef7e9812c1f27d4220dc7f1ea71",
 
     queryLang: "&language=it",
-
-    isLoading: false,
 });

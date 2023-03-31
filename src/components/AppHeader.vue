@@ -22,6 +22,26 @@ export default {
             placeholder="Inserisci testo...">
         <button @click="$emit('perform-search')">Cerca</button>
     </div>
+
+    <div id="radio-button-group">
+        <div class="radio-button">
+            <input v-model="store.typeOfSearch" type="radio" name="type-of-search" value="both" id="type-of-search-both"
+                checked>
+            <label for="type-of-search-both">Tutto</label>
+        </div>
+
+        <div class="radio-button">
+            <input v-model="store.typeOfSearch" type="radio" name="type-of-search" value="movies"
+                id="type-of-search-movies">
+            <label for="type-of-search-movies">Film</label>
+        </div>
+
+        <div class="radio-button">
+            <input v-model="store.typeOfSearch" type="radio" name="type-of-search" value="series"
+                id="type-of-search-series">
+            <label for="type-of-search-series">Serie</label>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>

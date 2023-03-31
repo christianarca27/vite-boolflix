@@ -9,24 +9,30 @@ export default {
     },
 
     props: {
-        movie: Object,
+        type: String,
+        card: Object,
     },
 }
 </script>
 
 <template>
-    <ul id="card-container">
-        <li class="movie-title">{{ movie.title }}</li>
-        <li class="movie-original-title">{{ movie.original_title }}</li>
-        <li class="movie-original-language">{{ movie.original_language }}</li>
-        <li class="movie-vote-average">{{ movie.vote_average }}</li>
+    <ul v-if="type == 'movie'" class="card-container movie-details">
+        <li class="movie-title">{{ card.title }}</li>
+        <li class="movie-original-title">{{ card.original_title }}</li>
+        <li class="movie-original-language">{{ card.original_language }}</li>
+        <li class="movie-vote-average">{{ card.vote_average }}</li>
+    </ul>
+
+    <ul v-else class="card-container serie-details">
+        <li class="movie-title">{{ card.name }}</li>
+        <li class="movie-original-title">{{ card.original_name }}</li>
+        <li class="movie-original-language">{{ card.original_language }}</li>
+        <li class="movie-vote-average">{{ card.vote_average }}</li>
     </ul>
 </template>
 
 <style lang="scss" scoped>
-#card-container {
-    width: 200px;
-    height: 300px;
+.card-container {
     padding: .5rem;
     border: 1px solid white;
 
