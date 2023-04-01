@@ -19,9 +19,9 @@ export default {
 <template>
     <header>
         <div id="header-inner" class="container">
-            <div id="logo">
+            <a id="logo" href="index.html">
                 <h1>Boolflix</h1>
-            </div>
+            </a>
 
             <div id="search">
                 <input @keyup.enter="$emit('perform-search')" v-model="store.searchText" type="text"
@@ -57,13 +57,11 @@ export default {
 #header-inner {
     display: flex;
     justify-content: space-between;
-    // align-items: center;
 
     #logo {
-        h1 {
-            color: red;
-            font-size: 4rem;
-        }
+        text-decoration: none;
+        color: red;
+        font-size: 2rem;
     }
 
     #search {
