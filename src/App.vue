@@ -21,25 +21,41 @@ export default {
   },
 
   methods: {
-    performFirstSearch() {
-      this.store.movies = [];
-      this.store.actualMoviesPage = 0;
-      this.store.totalMoviesPages = 0;
-      this.store.series = [];
-      this.store.actualSeriesPage = 0;
-      this.store.totalSeriesPages = 0;
-
-      if (this.store.typeOfSearch == "movies" || this.store.typeOfSearch == "both") {
-        this.store.isMoviesReady = false;
-        this.store.actualMoviesPage = 1;
-
-        this.performSearch("movies");
+    isSearchTextValid() {
+      if (this.store.searchText == "") {
+        return false;
       }
-      if (this.store.typeOfSearch == "series" || this.store.typeOfSearch == "both") {
-        this.store.isSeriesReady = false;
-        this.store.actualSeriesPage = 1;
+      else {
+        for (let i = 0; i < this.store.searchText.length; i++) {
+          if (this.store.searchText[i] != " ") {
+            return true;
+          }
+        }
+        return false;
+      }
+    },
 
-        this.performSearch("series");
+    performFirstSearch() {
+      if (this.isSearchTextValid()) {
+        this.store.movies = [];
+        this.store.actualMoviesPage = 0;
+        this.store.totalMoviesPages = 0;
+        this.store.series = [];
+        this.store.actualSeriesPage = 0;
+        this.store.totalSeriesPages = 0;
+
+        if (this.store.typeOfSearch == "movies" || this.store.typeOfSearch == "both") {
+          this.store.isMoviesReady = false;
+          this.store.actualMoviesPage = 1;
+
+          this.performSearch("movies");
+        }
+        if (this.store.typeOfSearch == "series" || this.store.typeOfSearch == "both") {
+          this.store.isSeriesReady = false;
+          this.store.actualSeriesPage = 1;
+
+          this.performSearch("series");
+        }
       }
     },
 
