@@ -62,8 +62,6 @@ export default {
 
 <style lang="scss" scoped>
 .cards-container {
-    width: 100%;
-
     display: flex;
     flex-flow: row nowrap;
 
