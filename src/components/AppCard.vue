@@ -46,7 +46,8 @@ export default {
 
         <li class="card-vote-average">
             <p>Voto:</p>
-            <p>{{ card.vote_average }}</p>
+            <i v-for="(star, index) in 5" :class="index < parseInt(card.vote_average / 2) ? 'fa-solid' : 'fa-regular'"
+                class="fa-star"></i>
         </li>
     </ul>
 
@@ -74,7 +75,8 @@ export default {
 
         <li class="card-vote-average">
             <p>Voto:</p>
-            <p>{{ card.vote_average }}</p>
+            <i v-for="(star, index) in 5" :class="index < Math.ceil(card.vote_average / 2) ? 'fa-solid' : 'fa-regular'"
+                class="fa-star"></i>
         </li>
     </ul>
 </template>
@@ -84,6 +86,10 @@ export default {
     border: 1px solid white;
 
     list-style-type: none;
+
+    i {
+        color: goldenrod;
+    }
 
     li {
         margin-bottom: .5rem;
