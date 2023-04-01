@@ -23,11 +23,19 @@ export default {
 
 <template>
     <ul v-if="type == 'movie'" class="card-container movie-details">
-        <li class="movie-title">
+        <li class="card-poster">
+            <img v-if="card.poster_path != null" :src="'https://image.tmdb.org/t/p/original' + card.poster_path" alt="">
+
+            <div v-else class="poster-not-avaible">
+                <p>Poster non disponibile</p>
+            </div>
+        </li>
+
+        <li class="card-title">
             <h3>{{ card.title }}</h3>
         </li>
 
-        <li class="movie-original-title">
+        <li class="card-original-title">
             <small>{{ card.original_title }}</small>
         </li>
 
@@ -36,18 +44,26 @@ export default {
             <lang-flag :iso="card.original_language" />
         </div>
 
-        <li class="movie-vote-average">
+        <li class="card-vote-average">
             <p>Voto:</p>
             <p>{{ card.vote_average }}</p>
         </li>
     </ul>
 
     <ul v-else class="card-container serie-details">
-        <li class="movie-title">
+        <li class="card-poster">
+            <img v-if="card.poster_path != null" :src="'https://image.tmdb.org/t/p/original' + card.poster_path" alt="">
+
+            <div v-else class="poster-not-avaible">
+                <p>Poster non disponibile</p>
+            </div>
+        </li>
+
+        <li class="card-title">
             <h3>{{ card.name }}</h3>
         </li>
 
-        <li class="movie-original-title">
+        <li class="card-original-title">
             <small>{{ card.original_name }}</small>
         </li>
 
@@ -56,7 +72,7 @@ export default {
             <lang-flag :iso="card.original_language" />
         </div>
 
-        <li class="movie-vote-average">
+        <li class="card-vote-average">
             <p>Voto:</p>
             <p>{{ card.vote_average }}</p>
         </li>
@@ -65,15 +81,32 @@ export default {
 
 <style lang="scss" scoped>
 .card-container {
-    min-width: 200px;
-    min-height: 300px;
-    padding: .5rem;
     border: 1px solid white;
 
     list-style-type: none;
 
     li {
         margin-bottom: .5rem;
+    }
+
+    .card-poster {
+
+        img {
+            width: 250px;
+            aspect-ratio: 2 / 3;
+
+            object-fit: cover;
+        }
+
+        .poster-not-avaible {
+            background-color: black;
+            width: 250px;
+            aspect-ratio: 2 / 3;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     .flag-icon-undefined {
