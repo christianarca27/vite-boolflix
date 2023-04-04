@@ -5,19 +5,27 @@ export const store = reactive({
 
     movies: [],
 
+    filteredMovies: [],
+
+    isMovieFiltered: false,
+
     totalMoviesPages: 0,
 
     actualMoviesPage: 0,
 
-    isMoviesReady: true,
+    isMoviesReady: false,
 
     series: [],
+
+    filteredSeries: [],
+
+    isSeriesFiltered: false,
 
     totalSeriesPages: 0,
 
     actualSeriesPage: 0,
 
-    isSeriesReady: true,
+    isSeriesReady: false,
 
     typeOfSearch: "both",
 

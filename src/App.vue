@@ -43,15 +43,15 @@ export default {
         this.store.series = [];
         this.store.actualSeriesPage = 0;
         this.store.totalSeriesPages = 0;
+        this.store.isMoviesReady = false;
+        this.store.isSeriesReady = false;
 
         if (this.store.typeOfSearch == "movies" || this.store.typeOfSearch == "both") {
-          this.store.isMoviesReady = false;
           this.store.actualMoviesPage = 1;
 
           this.performSearch("movies");
         }
         if (this.store.typeOfSearch == "series" || this.store.typeOfSearch == "both") {
-          this.store.isSeriesReady = false;
           this.store.actualSeriesPage = 1;
 
           this.performSearch("series");

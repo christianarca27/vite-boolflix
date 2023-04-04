@@ -2,6 +2,7 @@
 import { store } from '../store.js';
 import AppCard from './AppCard.vue';
 import JumboCard from './JumboCard.vue';
+import SearchFilter from './SearchFilter.vue'
 
 export default {
     name: "AppMain",
@@ -15,6 +16,7 @@ export default {
     components: {
         AppCard,
         JumboCard,
+        SearchFilter,
     },
 
     emits: [
@@ -34,22 +36,28 @@ export default {
             <div v-show="store.isMoviesReady" id="movies-container">
                 <h2>Film</h2>
 
-                <div class="page-status">
+                <div v-show="!store.isMovieFiltered" class="page-status">
                     <p>Pagina {{ this.store.actualMoviesPage }} / {{ this.store.totalMoviesPages }}</p>
 
                     <button @click="$emit('prev-movies-page-search')">Prev Page</button>
                     <button @click="$emit('next-movies-page-search')">Next Page</button>
                 </div>
 
+                <SearchFilter :type="'movie'"></SearchFilter>
+
                 <ul class="cards-container">
-                    <AppCard v-for="movie in store.movies" :type="'movie'" :card="movie"></AppCard>
+                    <AppCard v-if="store.isMovieFiltered" v-for="movie in store.filteredMovies" :type="'movie'"
+                        :card="movie"></AppCard>
+                    <AppCard v-else v-for="movie in store.movies" :type="'movie'" :card="movie"></AppCard>
                 </ul>
             </div>
 
             <div v-show="store.isSeriesReady" id="series-container">
                 <h2>Serie TV</h2>
 
-                <div class="page-status">
+                <SearchFilter :type="'series'"></SearchFilter>
+
+                <div v-if="!store.isSeriesFiltered" class="page-status">
                     <p>Pagina {{ this.store.actualSeriesPage }} / {{ this.store.totalSeriesPages }}</p>
 
                     <button @click="$emit('prev-series-page-search')">Prev Page</button>
@@ -57,12 +65,12 @@ export default {
                 </div>
 
                 <ul class="cards-container">
-                    <AppCard v-for="seriesItem in store.series" :type="'seriesItem'" :card="seriesItem"></AppCard>
+                    <AppCard v-if="store.isSeriesFiltered" v-for="seriesItem in store.filteredSeries" :type="'seriesItem'"
+                        :card="seriesItem">
+                    </AppCard>
+                    <AppCard v-else v-for="seriesItem in store.series" :type="'seriesItem'" :card="seriesItem">
+                    </AppCard>
                 </ul>
-            </div>
-
-            <div v-show="!store.isMoviesReady || !store.isSeriesReady" id="loading-page">
-                <p>Download titoli in corso...</p>
             </div>
         </div>
     </main>
