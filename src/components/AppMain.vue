@@ -1,6 +1,7 @@
 <script>
 import { store } from '../store.js';
 import AppCard from './AppCard.vue';
+import JumboCard from './JumboCard.vue';
 
 export default {
     name: "AppMain",
@@ -13,6 +14,7 @@ export default {
 
     components: {
         AppCard,
+        JumboCard,
     },
 
     emits: [
@@ -27,6 +29,8 @@ export default {
 <template>
     <main>
         <div class="container">
+            <JumboCard v-if="store.isJumboCardActive"></JumboCard>
+
             <div v-show="store.isMoviesReady" id="movies-container">
                 <h2>Film</h2>
 
@@ -53,7 +57,7 @@ export default {
                 </div>
 
                 <div class="cards-container">
-                    <AppCard v-for="serie in store.series" :type="'serie'" :card="serie"></AppCard>
+                    <AppCard v-for="seriesItem in store.series" :type="'seriesItem'" :card="seriesItem"></AppCard>
                 </div>
             </div>
 
