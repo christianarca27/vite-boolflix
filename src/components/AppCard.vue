@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <div @click="moreDetails()" class="card">
+    <li @click="moreDetails()" class="card">
         <div class="card-poster">
             <img v-if="card.poster_path != null" :src="posterPath" alt="">
 
@@ -78,7 +78,7 @@ export default {
                 <p>{{ card.overview }}</p>
             </li>
         </ul>
-    </div>
+    </li>
 </template>W
 
 <style lang="scss" scoped>

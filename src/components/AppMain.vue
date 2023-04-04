@@ -41,9 +41,9 @@ export default {
                     <button @click="$emit('next-movies-page-search')">Next Page</button>
                 </div>
 
-                <div class="cards-container">
+                <ul class="cards-container">
                     <AppCard v-for="movie in store.movies" :type="'movie'" :card="movie"></AppCard>
-                </div>
+                </ul>
             </div>
 
             <div v-show="store.isSeriesReady" id="series-container">
@@ -56,9 +56,9 @@ export default {
                     <button @click="$emit('next-series-page-search')">Next Page</button>
                 </div>
 
-                <div class="cards-container">
+                <ul class="cards-container">
                     <AppCard v-for="seriesItem in store.series" :type="'seriesItem'" :card="seriesItem"></AppCard>
-                </div>
+                </ul>
             </div>
 
             <div v-show="!store.isMoviesReady || !store.isSeriesReady" id="loading-page">
@@ -75,6 +75,6 @@ export default {
     flex-flow: row wrap;
     gap: 10px;
 
-    overflow-x: auto;
+    list-style-type: none;
 }
 </style>
