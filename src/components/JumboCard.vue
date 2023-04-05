@@ -135,7 +135,7 @@ export default {
         top: 0;
         right: 0;
 
-        color: white;
+        color: rgb(200, 200, 200);
         font-size: 2rem;
 
         i {
