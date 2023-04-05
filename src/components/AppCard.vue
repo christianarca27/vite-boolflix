@@ -84,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 .card {
     width: calc(100% / 5 - 10px * 4 / 5);
+    flex-shrink: 0;
     cursor: pointer;
 
     .card-poster {

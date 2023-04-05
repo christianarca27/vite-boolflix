@@ -33,6 +33,22 @@ export default {
         <div class="container">
             <JumboCard v-if="store.isJumboCardActive"></JumboCard>
 
+            <div v-show="store.isTrendingVisible" id="trending-movies">
+                <h2>Film più visti di oggi</h2>
+
+                <ul class="cards-container">
+                    <AppCard v-for="movie in store.trendingMovies" :type="'movie'" :card="movie"></AppCard>
+                </ul>
+            </div>
+
+            <div v-show="store.isTrendingVisible" id="trending-series">
+                <h2>Serie più viste di oggi</h2>
+
+                <ul class="cards-container">
+                    <AppCard v-for="seriesItem in store.trendingSeries" :type="'seriesItem'" :card="seriesItem"></AppCard>
+                </ul>
+            </div>
+
             <div v-show="store.isMoviesReady" id="movies-container">
                 <h2>Risultati in Film</h2>
 
@@ -66,10 +82,8 @@ export default {
 
                 <ul class="cards-container">
                     <AppCard v-if="store.isSeriesFiltered" v-for="seriesItem in store.filteredSeries" :type="'seriesItem'"
-                        :card="seriesItem">
-                    </AppCard>
-                    <AppCard v-else v-for="seriesItem in store.series" :type="'seriesItem'" :card="seriesItem">
-                    </AppCard>
+                        :card="seriesItem"></AppCard>
+                    <AppCard v-else v-for="seriesItem in store.series" :type="'seriesItem'" :card="seriesItem"></AppCard>
                 </ul>
             </div>
         </div>
@@ -79,6 +93,15 @@ export default {
 <style lang="scss" scoped>
 h2 {
     margin-bottom: 1rem;
+}
+
+#trending-movies,
+#trending-series {
+    .cards-container {
+        display: flex;
+        flex-flow: row nowrap;
+        overflow-y: auto;
+    }
 }
 
 .page-status {

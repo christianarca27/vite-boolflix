@@ -118,14 +118,28 @@ export default {
             this.store.totalMoviesPages = res.data.total_pages;
             this.store.movies = res.data.results;
             this.store.isMoviesReady = true;
+            this.store.isTrendingVisible = false;
           }
           else if (type == "series") {
             this.store.totalSeriesPages = res.data.total_pages;
             this.store.series = res.data.results;
             this.store.isSeriesReady = true;
+            this.store.isTrendingVisible = false;
           }
         });
     },
+  },
+
+  created() {
+    let tendingMoviesQuery = this.store.queryBasicUrl + "/trending/movie/day" + this.store.APIkey;
+    axios.get(tendingMoviesQuery).then((res) => {
+      this.store.trendingMovies = res.data.results;
+    });
+
+    let trendingSeriesQuery = this.store.queryBasicUrl + "/trending/tv/day" + this.store.APIkey;
+    axios.get(trendingSeriesQuery).then((res) => {
+      this.store.trendingSeries = res.data.results;
+    });
   },
 }
 </script>

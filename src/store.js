@@ -7,6 +7,8 @@ export const store = reactive({
 
     filteredMovies: [],
 
+    trendingMovies: [],
+
     isMovieFiltered: false,
 
     totalMoviesPages: 0,
@@ -19,6 +21,8 @@ export const store = reactive({
 
     filteredSeries: [],
 
+    trendingSeries: [],
+
     isSeriesFiltered: false,
 
     totalSeriesPages: 0,
@@ -26,6 +30,8 @@ export const store = reactive({
     actualSeriesPage: 0,
 
     isSeriesReady: false,
+
+    isTrendingVisible: true,
 
     typeOfSearch: "both",
 

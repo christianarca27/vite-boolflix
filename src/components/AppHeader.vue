@@ -54,30 +54,34 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-#header-inner {
-    display: flex;
-    justify-content: space-between;
+header {
+    height: 80px;
 
-    #logo {
-        text-decoration: none;
-        color: red;
-        font-size: 2rem;
-    }
-
-    #search {
+    #header-inner {
         display: flex;
-        align-items: center;
-        gap: 1rem;
+        justify-content: space-between;
 
-        input {
-            padding: .5rem;
-            margin-right: .5rem;
-            font-size: 1.2rem;
+        #logo {
+            text-decoration: none;
+            color: red;
+            font-size: 2rem;
         }
 
-        #radio-button-group {
+        #search {
             display: flex;
+            align-items: center;
             gap: 1rem;
+
+            input {
+                padding: .5rem;
+                margin-right: .5rem;
+                font-size: 1.2rem;
+            }
+
+            #radio-button-group {
+                display: flex;
+                gap: 1rem;
+            }
         }
     }
 }
