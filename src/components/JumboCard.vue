@@ -101,7 +101,7 @@ export default {
             </li>
 
             <li class="card-vote-average">
-                <h3>Voto: {{ store.selectedCard.vote_average }}</h3>
+                <h3>Voto:</h3>
                 <i v-for="number in 5" :class="number <= starRating ? 'fa-solid' : 'fa-regular'" class="fa-star"></i>
             </li>
 
@@ -126,7 +126,7 @@ export default {
     transform: translate(-50%, -50%);
     z-index: 1;
     list-style-type: none;
-    overflow-y: auto;
+    overflow-y: hidden;
 
     .close-details {
         padding: 1rem 1rem 2rem 2rem;
@@ -176,6 +176,7 @@ export default {
         height: 50%;
         padding: 2rem;
         list-style-type: none;
+        overflow-y: auto;
 
         .card-title {
             strong {

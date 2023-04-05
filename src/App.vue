@@ -88,8 +88,6 @@ export default {
     },
 
     performSearch(type) {
-      console.log("search " + type + " started...");
-
       if (type == "movies") {
         this.prepareMoviesQuery();
         this.getAndStoreAPIresults(type);

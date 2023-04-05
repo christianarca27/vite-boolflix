@@ -69,7 +69,7 @@ export default {
             </li>
 
             <li class="card-vote-average">
-                <h3>Voto: {{ card.vote_average }}</h3>
+                <h3>Voto:</h3>
                 <i v-for="number in 5" :class="number <= starRating ? 'fa-solid' : 'fa-regular'" class="fa-star"></i>
             </li>
 
@@ -141,10 +141,6 @@ export default {
                     font-size: 1.5rem;
                 }
             }
-        }
-
-        .card-vote-average i {
-            color: goldenrod;
         }
     }
 
