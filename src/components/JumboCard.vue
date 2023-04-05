@@ -59,13 +59,12 @@ export default {
 
 <template>
     <div class="jumbo-card">
-        <div @click="showLess()" class="close-details">
-            <i class="fa-solid fa-circle-xmark"></i>
+        <div class="close-details">
+            <i @click="showLess()" class="fa-solid fa-circle-xmark"></i>
         </div>
 
         <div class="card-xl-poster">
-            <img v-if="posterPath != null" :src="posterPath" alt="">
-
+            <img v-if="store.selectedCard.poster_path != null" :src="posterPath" alt="">
             <div v-else class="poster-not-available">
                 <p>Poster non disponibile</p>
             </div>
@@ -114,7 +113,7 @@ export default {
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .jumbo-card {
     background-color: black;
     width: 90vw;
@@ -130,18 +129,24 @@ export default {
     overflow-y: auto;
 
     .close-details {
-        padding: 2rem;
+        padding: 1rem 1rem 2rem 2rem;
 
         position: absolute;
         top: 0;
         right: 0;
 
-        color: black;
+        color: white;
         font-size: 2rem;
-        cursor: pointer;
 
-        &:hover {
-            color: white;
+        i {
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        &:hover i {
+            background-color: red;
+            box-shadow: red 0 0 50px;
+            color: black;
         }
     }
 
@@ -154,6 +159,15 @@ export default {
             height: 100%;
             object-fit: cover;
             object-position: top;
+        }
+
+        .poster-not-available {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 

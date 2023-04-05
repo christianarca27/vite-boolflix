@@ -9,7 +9,7 @@ export default {
 
             genresList: [],
 
-            isActive: [],
+            areActive: [],
         }
     },
 
@@ -29,7 +29,7 @@ export default {
             this.genresList = res.data.genres;
 
             for (let i = 0; i < this.genresList.length; i++) {
-                this.isActive[i] = false;
+                this.areActive[i] = false;
             }
         });
     },
@@ -38,7 +38,7 @@ export default {
         filter() {
             let activeFilters = [];
 
-            this.isActive.forEach((state, index) => {
+            this.areActive.forEach((state, index) => {
                 if (state == true) {
                     activeFilters.push(this.genresList[index]);
                 }
@@ -74,7 +74,7 @@ export default {
 
         removeFilter() {
             for (let i = 0; i < this.genresList.length; i++) {
-                this.isActive[i] = false;
+                this.areActive[i] = false;
             }
 
             if (this.type == "movie") {
@@ -91,30 +91,55 @@ export default {
 </script>
 
 <template>
-    <ul id="filters">
-        <li v-for="(genre, index) in genresList" class="filter">
-            <input v-model="isActive[index]" type="checkbox" :name="genre.name" :id="genre.name">
-            <label :for="genre.name">{{ genre.name }}</label>
-        </li>
-    </ul>
-    <button @click="filter()">Filtra pagina risultati</button>
-    <button @click="removeFilter()">Rimuovi filtri</button>
+    <div class="container">
+        <h4>Filtri pagina</h4>
+
+        <ul id="filters">
+            <li v-for="(genre, index) in genresList" class="filter">
+                <input v-model="areActive[index]" type="checkbox" :name="genre.name" :id="type + '_' + genre.name">
+                <label :for="type + '_' + genre.name">{{ genre.name }}</label>
+            </li>
+        </ul>
+
+        <div id="filter-buttons">
+            <button @click="filter()">Filtra pagina risultati</button>
+            <button @click="removeFilter()">Rimuovi filtri</button>
+        </div>
+    </div>
 </template>
 
-<style lang="scss">
-#filters {
-    height: 8vh;
+<style lang="scss" scoped>
+.container {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid white;
+    border-radius: 10px;
 
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
+    #filters {
+        height: 8vh;
+        margin-bottom: 1rem;
 
-    list-style-type: none;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-between;
 
-    .filter {
-        input {
-            margin-right: .5rem;
+        list-style-type: none;
+
+        .filter {
+            input {
+                margin-right: .5rem;
+                cursor: pointer;
+            }
+
+            label {
+                cursor: pointer;
+            }
         }
+    }
+
+    #filter-buttons {
+        display: flex;
+        gap: 1rem
     }
 }
 </style>

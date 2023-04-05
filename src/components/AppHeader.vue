@@ -79,11 +79,6 @@ export default {
             display: flex;
             gap: 1rem;
         }
-
-        button {
-            padding: .5rem;
-            font-size: 1.2rem;
-        }
     }
 }
 </style>

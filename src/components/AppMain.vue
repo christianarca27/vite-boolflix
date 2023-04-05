@@ -34,13 +34,14 @@ export default {
             <JumboCard v-if="store.isJumboCardActive"></JumboCard>
 
             <div v-show="store.isMoviesReady" id="movies-container">
-                <h2>Film</h2>
+                <h2>Risultati in Film</h2>
 
                 <div v-show="!store.isMovieFiltered" class="page-status">
+                    <button @click="$emit('prev-movies-page-search')">Pagina precedente</button>
+
                     <p>Pagina {{ this.store.actualMoviesPage }} / {{ this.store.totalMoviesPages }}</p>
 
-                    <button @click="$emit('prev-movies-page-search')">Prev Page</button>
-                    <button @click="$emit('next-movies-page-search')">Next Page</button>
+                    <button @click="$emit('next-movies-page-search')">Pagina successiva</button>
                 </div>
 
                 <SearchFilter :type="'movie'"></SearchFilter>
@@ -53,16 +54,15 @@ export default {
             </div>
 
             <div v-show="store.isSeriesReady" id="series-container">
-                <h2>Serie TV</h2>
-
-                <SearchFilter :type="'series'"></SearchFilter>
+                <h2>Risultati in Serie TV</h2>
 
                 <div v-if="!store.isSeriesFiltered" class="page-status">
+                    <button @click="$emit('prev-series-page-search')">Pagina precedente</button>
                     <p>Pagina {{ this.store.actualSeriesPage }} / {{ this.store.totalSeriesPages }}</p>
-
-                    <button @click="$emit('prev-series-page-search')">Prev Page</button>
-                    <button @click="$emit('next-series-page-search')">Next Page</button>
+                    <button @click="$emit('next-series-page-search')">Pagina successiva</button>
                 </div>
+
+                <SearchFilter :type="'series'"></SearchFilter>
 
                 <ul class="cards-container">
                     <AppCard v-if="store.isSeriesFiltered" v-for="seriesItem in store.filteredSeries" :type="'seriesItem'"
@@ -77,6 +77,18 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+h2 {
+    margin-bottom: 1rem;
+}
+
+.page-status {
+    margin-bottom: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .cards-container {
     display: flex;
 
